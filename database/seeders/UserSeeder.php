@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class PostSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,15 +15,16 @@ class PostSeeder extends Seeder
      */
     public function run()
     {
-        DB::Table('posts')->truncate();
-        DB::Table('posts')->insert(
-            [
+      DB::Table('users')->truncate();
+      DB::Table('users')->insert(
           [
-              'id'=>1,
-              'title'=>'test',
-              'body'=>'testmonial',
-          ]   ,
-            ]
-        );
+        [
+         'id'=>1,
+         'name'=>'admin',
+         'email'=>'admin@example.com',
+         'password'=>'123456',
+        ],
+          ]
+      );
     }
 }

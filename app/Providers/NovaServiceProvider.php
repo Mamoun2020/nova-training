@@ -49,14 +49,14 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             ]);
         });
     }
-    protected  function  resources()
-    {
-       Nova::resourcesIn(app_path('Nova'));
-       Nova::resources([
-          User::class,
-          Post::class,
-       ]);
-    }
+//    protected  function  resources()
+//    {
+//       Nova::resourcesIn(app_path('Nova'));
+//       Nova::resources([
+//          User::class,
+//          Post::class,
+//       ]);
+//    }
 
     /**
      * Get the dashboards that should be listed in the Nova sidebar.
