@@ -126,7 +126,11 @@ class Post extends Resource
     public function actions(NovaRequest $request)
     {
         return [
-            new PublishPost,
+            (new PublishPost)->canSee(function ($request){
+               return $request->user()->id === 1;
+            })->canRun(function ($request,$post){
+                return $post->id === 3;
+            }),
         ];
     }
     public function title()

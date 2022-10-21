@@ -2,11 +2,13 @@
 
 namespace App\Nova\Actions;
 
+;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Collection;
 use Laravel\Nova\Actions\Action;
 use Laravel\Nova\Fields\ActionFields;
+use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class PublishPost extends Action
@@ -30,7 +32,8 @@ class PublishPost extends Action
             );
         }
 //        sleep(5);
-        return Action::message('The Post Was Published Successful.');
+//        return Action::message('The Post Was Published Successful.');
+        return Action::message('');
 //        return Action::danger('The Post Was Published Successful.');
 //        return Action::download(storage_path('your/file.csv'));
 //        return Action::redirect('');
@@ -44,6 +47,8 @@ class PublishPost extends Action
      */
     public function fields(NovaRequest $request)
     {
-        return [];
+        return [
+           Text::make('message'),
+        ];
     }
 }
