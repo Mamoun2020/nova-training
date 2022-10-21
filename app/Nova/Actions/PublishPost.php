@@ -33,7 +33,7 @@ class PublishPost extends Action
         }
 //        sleep(5);
 //        return Action::message('The Post Was Published Successful.');
-        return Action::message('');
+        return Action::message($fields->message);
 //        return Action::danger('The Post Was Published Successful.');
 //        return Action::download(storage_path('your/file.csv'));
 //        return Action::redirect('');
