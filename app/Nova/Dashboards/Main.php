@@ -3,7 +3,7 @@
 namespace App\Nova\Dashboards;
 
 use App\Nova\Metrics\PostCount;
-use Laravel\Nova\Cards\Help;
+use App\Nova\Metrics\PostsPerDay;
 use Laravel\Nova\Dashboards\Main as Dashboard;
 
 class Main extends Dashboard
@@ -17,7 +17,8 @@ class Main extends Dashboard
     {
         return [
 //            new Help,
-        new PostCount,
+            new PostCount,
+            new PostsPerDay,
         ];
     }
 }
