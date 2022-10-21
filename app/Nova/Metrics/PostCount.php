@@ -2,6 +2,7 @@
 
 namespace App\Nova\Metrics;
 
+use App\Models\Post;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Metrics\Value;
 
@@ -15,7 +16,7 @@ class PostCount extends Value
      */
     public function calculate(NovaRequest $request)
     {
-        return $this->count($request, Model::class);
+        return $this->count($request, Post::class);
     }
 
     /**
