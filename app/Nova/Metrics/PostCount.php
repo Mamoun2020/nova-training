@@ -17,6 +17,12 @@ class PostCount extends Value
     public function calculate(NovaRequest $request)
     {
         return $this->count($request, Post::class);
+//        return $this->average($request, Post::class,'word_count');
+//        return $this->sum($request, Post::class,);
+//        return $this->min($request, Post::class,);
+//        return $this->max($request, Post::class,);
+        //custom calculate
+//        return $this->result(100)->previous(50);
     }
 
     /**
