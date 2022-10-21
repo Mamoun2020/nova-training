@@ -90,9 +90,9 @@ class Post extends Resource
     public function cards(NovaRequest $request)
     {
         return [
-            new PostCount,
-            new PostsPerDay,
-            new PostsPerCategory,
+            (new PostCount)->width('1/2'),
+            (new PostsPerCategory)->width('1/2'),
+            (new PostsPerDay)->width('full'),
         ];
     }
 
