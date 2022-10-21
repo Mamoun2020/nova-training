@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Nova\Filters\PostCategories;
 use App\Nova\Filters\PostPublished;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
@@ -97,6 +98,7 @@ class Post extends Resource
     {
         return [
            new PostPublished,
+           new PostCategories,
         ];
     }
 
