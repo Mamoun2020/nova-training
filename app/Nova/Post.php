@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Nova\Filters\PostPublished;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
@@ -94,7 +95,9 @@ class Post extends Resource
      */
     public function filters(NovaRequest $request)
     {
-        return [];
+        return [
+           new PostPublished,
+        ];
     }
 
     /**
