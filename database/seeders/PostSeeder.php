@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -18,11 +17,11 @@ class PostSeeder extends Seeder
         DB::Table('posts')->truncate();
         DB::Table('posts')->insert(
             [
-          [
-              'id'=>1,
-              'title'=>'test',
-              'body'=>'testmonial',
-          ]   ,
+                [
+                    'id' => 1,
+                    'title' => 'test',
+                    'body' => 'testmonial',
+                ],
             ]
         );
     }

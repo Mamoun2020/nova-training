@@ -2,7 +2,6 @@
 
 namespace App\Nova\Actions;
 
-;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Collection;
@@ -48,7 +47,7 @@ class PublishPost extends Action
     public function fields(NovaRequest $request)
     {
         return [
-           Text::make('message'),
+            Text::make('message'),
         ];
     }
 }

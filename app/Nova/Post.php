@@ -9,7 +9,6 @@ use App\Nova\Lenses\MostTags;
 use App\Nova\Metrics\PostCount;
 use App\Nova\Metrics\PostsPerCategory;
 use App\Nova\Metrics\PostsPerDay;
-use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Boolean;
@@ -42,7 +41,7 @@ class Post extends Resource
      * @var array
      */
     public static $search = [
-        'id','title','body',
+        'id', 'title', 'body',
     ];
 //    public static function indexQuery(NovaRequest $request, $query)
 //    {
@@ -52,7 +51,7 @@ class Post extends Resource
     /**
      * Get the fields displayed by the resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param NovaRequest $request
      * @return array
      */
     public function fields(NovaRequest $request)
@@ -60,21 +59,21 @@ class Post extends Resource
         return [
             ID::make()->sortable(),
             Text::make('Title')->rules('required')->maxlength(45),
-            Trix::make('Body')->rules('required','max:255'),
-            DateTime::make('Publish Post At','publish_at')->hideFromIndex()->rules(
+            Trix::make('Body')->rules('required', 'max:255'),
+            DateTime::make('Publish Post At', 'publish_at')->hideFromIndex()->rules(
                 'after_or_equal:today',
             ),
             DateTime::make('Publish Until')->hideFromIndex()->rules(
                 'after_or_equal:publish_at',
             ),
-            Boolean::make('Is Published')->canSee(function ($request){
+            Boolean::make('Is Published')->canSee(function ($request) {
                 return true;
 //                return $request->user->can('publish_post',$this);
             }),
             Select::make('Category')->options(
                 [
-                    'tutorials'=>'Tutorials',
-                    'news'=>'News',
+                    'tutorials' => 'Tutorials',
+                    'news' => 'News',
                 ]
             )->hideWhenUpdating()->rules('required'),
             BelongsTo::make('User'),
@@ -85,7 +84,7 @@ class Post extends Resource
     /**
      * Get the cards available for the request.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param NovaRequest $request
      * @return array
      */
     public function cards(NovaRequest $request)
@@ -100,21 +99,21 @@ class Post extends Resource
     /**
      * Get the filters available for the resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param NovaRequest $request
      * @return array
      */
     public function filters(NovaRequest $request)
     {
         return [
-           new PostPublished,
-           new PostCategories,
+            new PostPublished,
+            new PostCategories,
         ];
     }
 
     /**
      * Get the lenses available for the resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param NovaRequest $request
      * @return array
      */
     public function lenses(NovaRequest $request)
@@ -127,22 +126,23 @@ class Post extends Resource
     /**
      * Get the actions available for the resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param NovaRequest $request
      * @return array
      */
     public function actions(NovaRequest $request)
     {
         return [
-            (new PublishPost)->canSee(function ($request){
-               return $request->user()->id === 1;
-            })->canRun(function ($request,$post){
+            (new PublishPost)->canSee(function ($request) {
+                return $request->user()->id === 1;
+            })->canRun(function ($request, $post) {
                 return $post->id === 3;
             }),
         ];
     }
+
     public function title()
     {
-        return $this->title.' - '. $this->category;
+        return $this->title . ' - ' . $this->category;
     }
 
     public function subtitle()
