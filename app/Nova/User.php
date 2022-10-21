@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
 use Laravel\Nova\Fields\Gravatar;
@@ -17,8 +18,12 @@ class User extends Resource
      *
      * @var string
      */
-    public static $model = \App\Models\User::class;
 
+    public static $model = \App\Models\User::class;
+    public static $tableStyle = 'tight';
+//    public static $clickAction = 'edit';
+
+//    public static $showColumnBorders = true;
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
@@ -108,4 +113,8 @@ class User extends Resource
     {
         return [];
     }
+//    public static function afterCreate(NovaRequest $request, Model $model)
+//    {
+//        $model->sendEmailVerificationNotification();
+//    }
 }

@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Post extends Resource
@@ -14,6 +15,7 @@ class Post extends Resource
      * @var string
      */
     public static $model = \App\Models\Post::class;
+    public static $with =['user'];
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -21,7 +23,6 @@ class Post extends Resource
      * @var string
      */
     public static $title = 'id';
-
     /**
      * The columns that should be searched.
      *
@@ -29,8 +30,11 @@ class Post extends Resource
      */
     public static $search = [
         'id',
+        'title',
+        'subtitle',
+        'user_id'
     ];
-    public  static $displayInNavigation =false;
+//    public  static $displayInNavigation =false;
     /**
      * Get the fields displayed by the resource.
      *
@@ -41,6 +45,11 @@ class Post extends Resource
     {
         return [
             ID::make()->sortable(),
+            Text::make('title')
+                ->rules('required', 'max:255'),
+            Text::make('subtitle'),
+            ID::make('user_id')->sortable(),
+
         ];
     }
 
@@ -86,5 +95,9 @@ class Post extends Resource
     public function actions(NovaRequest $request)
     {
         return [];
+    }
+    public function subtitle()
+    {
+        return "Author: {$this->user->name}";
     }
 }
