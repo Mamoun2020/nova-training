@@ -14,10 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::table('posts', function (Blueprint $table) {
-           $table->dateTime('publish_at')->nullable()->change();
-           $table->dateTime('publish_until')->nullable()->change();
-           $table->boolean('is_published')->default(false)->change();
-           $table->string('category')->nullable()->change();
+           $table->dateTime('publish_at')->nullable();
+           $table->dateTime('publish_until')->nullable();
+           $table->boolean('is_published')->default(false);
+           $table->string('category')->nullable();
         });
     }
 

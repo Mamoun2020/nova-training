@@ -28,18 +28,19 @@ class Post extends Resource
      * @var string
      */
     public static $title = 'title';
+//    public static $globallySearchable=false;
     /**
      * The columns that should be searched.
      *
      * @var array
      */
     public static $search = [
-        'id','title','body','category'
+        'id','title','body',
     ];
-    public static function indexQuery(NovaRequest $request, $query)
-    {
-        return $query->where('user_id',$request->user()->id);
-    }
+//    public static function indexQuery(NovaRequest $request, $query)
+//    {
+//        return $query->where('user_id',$request->user()->id);
+//    }
 //    public  static $displayInNavigation =false;
     /**
      * Get the fields displayed by the resource.
@@ -117,6 +118,11 @@ class Post extends Resource
     {
         return [];
     }
+    public function title()
+    {
+        return $this->title.' - '. $this->category;
+    }
+
     public function subtitle()
     {
         return "Author: {$this->user->name}";

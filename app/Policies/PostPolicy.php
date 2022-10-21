@@ -77,7 +77,7 @@ class PostPolicy
      */
     public function restore(User $user, Post $post)
     {
-        //
+        return true;
     }
 
     /**
