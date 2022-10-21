@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use App\Nova\Filters\PostCategories;
 use App\Nova\Filters\PostPublished;
+use App\Nova\Lenses\MostTags;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
@@ -110,7 +111,9 @@ class Post extends Resource
      */
     public function lenses(NovaRequest $request)
     {
-        return [];
+        return [
+            new MostTags,
+        ];
     }
 
     /**
