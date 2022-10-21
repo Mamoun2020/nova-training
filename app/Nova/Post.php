@@ -3,7 +3,12 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -29,7 +34,7 @@ class Post extends Resource
      * @var array
      */
     public static $search = [
-        'id','title','body'
+        'id','title','body','category'
     ];
 //    public  static $displayInNavigation =false;
     /**
@@ -44,7 +49,17 @@ class Post extends Resource
             ID::make()->sortable(),
             Text::make('Title'),
             Trix::make('Body'),
-
+            DateTime::make('Publish Post At','publish_at')->hideFromIndex(),
+            DateTime::make('Publish Until')->hideFromIndex(),
+            Boolean::make('Is Published'),
+            Select::make('Category')->options(
+                [
+                    'tutorials'=>'Tutorials',
+                    'news'=>'News',
+                ]
+            )->hideWhenUpdating(),
+            BelongsTo::make('User'),
+            BelongsToMany::make('Tags'),
         ];
     }
 
@@ -90,5 +105,9 @@ class Post extends Resource
     public function actions(NovaRequest $request)
     {
         return [];
+    }
+    public function subtitle()
+    {
+        return "Author: {$this->user->name}";
     }
 }
