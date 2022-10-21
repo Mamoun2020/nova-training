@@ -14,9 +14,11 @@ class PostsPerDay extends Trend
      * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
      * @return mixed
      */
+//    public $name = 'Posts Per Month'; // or you can use name function
     public function calculate(NovaRequest $request)
     {
-        return $this->countByDays($request, Post::class);
+        // we can swap it from count to (average) and add columns('avg')
+        return $this->countByDays($request, Post::class)->showLatestValue();
     }
 
     /**
