@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
                     'id' => 1,
                     'name' => 'admin',
                     'email' => 'admin@example.com',
-                    'password' => '123456',
+                    'password' => '12345689',
                 ],
             ]
         );
