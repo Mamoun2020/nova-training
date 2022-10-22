@@ -2,7 +2,9 @@
     "private": true,
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "build-viewcache": "cd nova-components/Viewcache && npm run dev",
+        "build-viewcache-prod": "cd nova-components/Viewcache && npm run prod"
     },
     "devDependencies": {
         "axios": "^0.27",

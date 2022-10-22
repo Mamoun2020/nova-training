@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Nova\Dashboards\Main;
+use Beyondecode\Viewcache\Viewcache;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
@@ -76,7 +77,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     public function tools()
     {
-        return [];
+        return [
+            new Viewcache,
+        ];
     }
 
     /**
